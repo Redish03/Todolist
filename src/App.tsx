@@ -1,25 +1,27 @@
-import { useState } from "react";
-import TodoList from "./TodoList";
-import TodoListHead from "./TodoListHead";
-import { TodoItem } from "./types";
+// react
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+
+// layouts
+import BaseLayout from "./components/layouts/BaseLayout";
+
+// pages
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Test from "./pages/Test";
+import NotFound from "./pages/NotFound";
 
 const App = () => {
-  const [todoList, setTodoList] = useState<TodoItem[]>([
-    { title: "리액트 공부하기" },
-    { title: "리액트 라이브러리 공부하기" },
-  ]);
-
-  const handleCreateTodo = () => {
-    const newTodoList = [...todoList, { title: "새로운 투두" }]; //todoList전체를 불러오고, 새로운 투두를 추가시킨다.
-    setTodoList(newTodoList);
-  };
-
   return (
-    <>
-      <TodoListHead>성우의 투두리스트</TodoListHead>
-      <TodoList todoList={todoList} />
-      <button onClick={handleCreateTodo}>만들기</button>
-    </>
+    <Router>
+      <Routes>
+        <Route path="/" element={<BaseLayout />}>
+          <Route index element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/test/:id" element={<Test />} />
+        </Route>
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </Router>
   );
 };
 
