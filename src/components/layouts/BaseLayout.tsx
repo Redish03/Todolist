@@ -42,7 +42,7 @@ const LayoutWrapper = styled.div`
 `;
 
 const Container = styled.div`
-  padding-top: 80px;
+  padding-top: 150px;
   display: flex;
   flex-direction: column;
   justify-content: center;
